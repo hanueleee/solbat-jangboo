@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_31_085528) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_31_093517) do
   create_table "partners", force: :cascade do |t|
     t.string "name", null: false
     t.string "business_registration_number"
@@ -18,12 +18,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_085528) do
     t.string "address"
     t.string "phone_number"
     t.integer "partner_type", default: 0
-    t.integer "primary_trade_method", default: 0
+    t.integer "primary_payment_method", default: 0
     t.boolean "uses_special_item_book", default: false
     t.boolean "is_vat_applicable", default: false
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.integer "partner_id", null: false
+    t.date "trade_date", null: false
+    t.integer "trade_type", default: 0, null: false
+    t.string "title", null: false
+    t.integer "payment_method", default: 0, null: false
+    t.decimal "basic_amount", precision: 15, null: false
+    t.decimal "vat_amount", precision: 15
+    t.decimal "total_amount", precision: 15
+    t.decimal "received_amount", precision: 15
+    t.decimal "payment_amount", precision: 15
+    t.decimal "receivable_amount", precision: 15
+    t.decimal "payable_amount", precision: 15
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["partner_id"], name: "index_trades_on_partner_id"
   end
 
 end
