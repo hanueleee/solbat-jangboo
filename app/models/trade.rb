@@ -3,7 +3,7 @@
 # Table name: trades
 #
 #  id                :integer          not null, primary key
-#  basic_amount      :decimal(15, )    not null
+#  net_amount        :decimal(15, )    not null
 #  note              :text
 #  payable_amount    :decimal(15, )
 #  payment_amount    :decimal(15, )
@@ -24,6 +24,8 @@
 #  index_trades_on_partner_id  (partner_id)
 #
 class Trade < ApplicationRecord
+  has_many :trade_items
+  
   # in : 입고 : 물건이 들어옴 (=물건을 샀다)
   # out : 출고 : 물건이 나감 (=물건을 팔았다)
   # return_in : 반입 : 출고 -> 반입 (=팔았던 물건 중 일부 반품)

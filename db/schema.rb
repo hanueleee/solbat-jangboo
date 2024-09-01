@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_01_062949) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_01_065703) do
   create_table "basic_items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "unit", default: 0, null: false
@@ -46,13 +46,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_062949) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "trade_items", force: :cascade do |t|
+    t.integer "trade_id", null: false
+    t.string "itemable_type", null: false
+    t.integer "itemable_id", null: false
+    t.decimal "unit_price", precision: 15, default: "0", null: false
+    t.integer "quantity", default: 1, null: false
+    t.decimal "net_price", precision: 15, default: "0", null: false
+    t.decimal "vat_price", precision: 15, default: "0", null: false
+    t.decimal "total_price", precision: 15, default: "0", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["itemable_type", "itemable_id"], name: "index_trade_items_on_itemable"
+    t.index ["trade_id"], name: "index_trade_items_on_trade_id"
+  end
+
   create_table "trades", force: :cascade do |t|
     t.integer "partner_id", null: false
     t.date "trade_date", null: false
     t.integer "trade_type", default: 0, null: false
     t.string "title", null: false
     t.integer "payment_method", default: 0, null: false
-    t.decimal "basic_amount", precision: 15, null: false
+    t.decimal "net_amount", precision: 15, null: false
     t.decimal "vat_amount", precision: 15
     t.decimal "total_amount", precision: 15
     t.decimal "received_amount", precision: 15

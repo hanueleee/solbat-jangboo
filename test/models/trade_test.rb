@@ -3,7 +3,7 @@
 # Table name: trades
 #
 #  id                :integer          not null, primary key
-#  basic_amount      :decimal(15, )    not null
+#  net_amount        :decimal(15, )    not null
 #  note              :text
 #  payable_amount    :decimal(15, )
 #  payment_amount    :decimal(15, )

@@ -1,0 +1,10 @@
+ko:
+  enums:
+    partner:
+      partner_types:
+        seller: 매출처
+        buyer: 매입처
+        both: 매입매출처
+      primary_payment_methods:
+        cash: 현금거래
+        credit: 외상거래
