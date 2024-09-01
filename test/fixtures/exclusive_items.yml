@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: exclusive_items
+#
+#  id              :integer          not null, primary key
+#  exclusive_price :decimal(15, )    not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  basic_item_id   :integer          not null
+#  partner_id      :integer          not null
+#
+# Indexes
+#
+#  index_exclusive_items_on_basic_item_id                 (basic_item_id)
+#  index_exclusive_items_on_partner_id                    (partner_id)
+#  index_exclusive_items_on_partner_id_and_basic_item_id  (partner_id,basic_item_id) UNIQUE
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

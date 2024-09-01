@@ -18,6 +18,8 @@
 #
 class Partner < ApplicationRecord
   has_many :trades
+  has_many :exclusive_items
+
   # seller (매출처. 물건 파는) / buyer (매입처. 물건 사오는) / both (매입매출처)
   enum partner_type: { seller: 0, buyer: 10, both: 20 }
 

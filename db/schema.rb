@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_01_053902) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_01_062949) do
   create_table "basic_items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "unit", default: 0, null: false
@@ -18,6 +18,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_053902) do
     t.integer "stock", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "exclusive_items", force: :cascade do |t|
+    t.integer "partner_id", null: false
+    t.integer "basic_item_id", null: false
+    t.decimal "exclusive_price", precision: 15, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["basic_item_id"], name: "index_exclusive_items_on_basic_item_id"
+    t.index ["partner_id", "basic_item_id"], name: "index_exclusive_items_on_partner_id_and_basic_item_id", unique: true
+    t.index ["partner_id"], name: "index_exclusive_items_on_partner_id"
   end
 
   create_table "partners", force: :cascade do |t|
