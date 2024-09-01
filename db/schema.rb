@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_31_093517) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_01_053902) do
+  create_table "basic_items", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "unit", default: 0, null: false
+    t.decimal "unit_price", precision: 15, null: false
+    t.integer "stock", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "partners", force: :cascade do |t|
     t.string "name", null: false
     t.string "business_registration_number"
@@ -19,7 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_093517) do
     t.string "phone_number"
     t.integer "partner_type", default: 0
     t.integer "primary_payment_method", default: 0
-    t.boolean "uses_special_item_book", default: false
+    t.boolean "uses_exclusive_item_book", default: false
     t.boolean "is_vat_applicable", default: false
     t.text "note"
     t.datetime "created_at", null: false
